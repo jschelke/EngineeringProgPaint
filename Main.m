@@ -57,6 +57,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.currentMousePos = [0 0];
     handles.previousMousePos = [0 0];
     handles.pencilSize = 1;
+    handles.pencilShape = [1; 1];
     handles.SelectedColor = [0,0,0];
     
     % ----------------------

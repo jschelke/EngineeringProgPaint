@@ -9,4 +9,11 @@ function pencilSizeValue_Callback(hObject, eventdata, handles)
 
 % --- Executes during object creation, after setting all properties.
     handles.pencilSize = str2double(get(hObject, 'String'));
+    
+%     handles.pencilShape = zeros(handles.pencilSize);
+%     for y = 1:handles.pencilSize
+%         for x = 1:handles.pencilSize
+%             
+%         end
+%     end
 end
