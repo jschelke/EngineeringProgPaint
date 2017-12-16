@@ -1,6 +1,5 @@
 function mouseMove (hObject, eventdata)
     handles = guidata(hObject);
-    handles.previousMousePos = handles.currentMousePos;
     handles.currentMousePos = get (gca, 'CurrentPoint');
     set(handles.XposText, 'String', ['X: ', num2str(handles.currentMousePos(1,1))]);
     set(handles.YposText, 'String', ['Y: ', num2str(handles.currentMousePos(1,2))]);

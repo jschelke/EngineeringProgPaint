@@ -22,7 +22,7 @@ function varargout = Main(varargin)
 
 % Edit the above text to modify the response to help Main
 
-% Last Modified by GUIDE v2.5 16-Dec-2017 17:27:37
+% Last Modified by GUIDE v2.5 16-Dec-2017 18:53:18
 
 % Begin initialization code - DO NOT EDIT
     gui_Singleton = 1;
@@ -54,6 +54,9 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.mouseDown = false;
     handles.Image = ones(Position(3),Position(4),3);
     handles.ImagePlot = image(handles.Image);
+    handles.currentMousePos = [0 0];
+    handles.previousMousePos = [0 0];
+    handles.pencilSize = 1;
     
     % ----------------------
     %      Mouse events
