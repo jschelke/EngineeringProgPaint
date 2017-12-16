@@ -22,7 +22,7 @@ function varargout = NewImage(varargin)
 
 % Edit the above text to modify the response to help NewImage
 
-% Last Modified by GUIDE v2.5 16-Dec-2017 17:40:31
+% Last Modified by GUIDE v2.5 16-Dec-2017 18:55:40
 
 % Begin initialization code - DO NOT EDIT
     gui_Singleton = 1;
@@ -47,17 +47,21 @@ end
 
 % --- Executes just before NewImage is made visible.
 function NewImage_OpeningFcn(hObject, eventdata, handles, varargin)
+    
     handles.output = hObject;
 
     guidata(hObject, handles);
+    uiwait(handles.figure1)
 
 end
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = NewImage_OutputFcn(hObject, eventdata, handles) 
-
-    varargout{1} = handles.output;
+function varargout = NewImage_OutputFcn(hObject, eventdata, handles)
+    handles.output = hObject;
+    varargout{1} = [get(handles,'Width') get(handles,'Height')];
+    % The figure can be deleted now
+    delete(handles.figure1);
 end
 
 
@@ -96,16 +100,36 @@ end
 
 % --- Executes on button press in ButtonOK.
 function ButtonOK_Callback(hObject, eventdata, handles)
+    handles.output = hObject;
     Height = get(handles.EditHeight,'String');
     Width = get(handles.EditWidth,'String');
     
-    Height = str2num(Height);
-    Width = str2(Width);
+    Height = str2double(Height);
+    Width = str2double(Width);
     
     if(Height<800 && Width<800)
+        handles.Width = Width;
+        handles.Height = Height;
+        guidata(hObject, handles);
         close;
     end
-    Height = 0;
-    Width = 0;
+    handles.Height = 0;
+    handles.Width = 0;
 end
 
+
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: delete(hObject) closes the figure
+    if isequal(get(hObject, 'waitstatus'), 'waiting')
+    % The GUI is still in UIWAIT, us UIRESUME
+        uiresume(hObject);
+    else
+    % The GUI is no longer waiting, just close it
+        delete(hObject);
+    end
+end
