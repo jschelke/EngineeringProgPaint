@@ -3,9 +3,9 @@ function ButtonOpenFile_Callback(hObject, eventdata, handles)
 SupportedFormats = {'*.jpg;*.bmp;*.png*',...
  'Picture Formats (*.jpg,*.bmp,*.png)'}; %These formats are now supported
 
-[filename, pathname] = uigetfile(SupportedFormats);
-%pathname = 'D:\Users\Jeroen\Pictures\';
-%filename = 'test1.png';
+%[filename, pathname] = uigetfile(SupportedFormats);
+pathname = 'D:\Users\Jeroen\Pictures\';
+filename = 'test1.png';
 
 handles.Image = imread([pathname filename]);
 ImageSize = size(handles.Image);
