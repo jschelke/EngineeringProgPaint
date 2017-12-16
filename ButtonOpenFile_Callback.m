@@ -11,7 +11,9 @@ handles.Image = imread([pathname filename]);
 ImageSize = size(handles.Image);
 changeCanvasSize(handles,ImageSize(2),ImageSize(1));
 
-%handles.ImagePlot.Position.width = ImageSize(2);
-%handles.ImagePlot.Position.heigth = ImageSize(1);
 
 handles.ImagePlot = image(handles.Image);
+
+guidata(hObject, handles);
+
+end
