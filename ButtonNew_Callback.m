@@ -7,6 +7,6 @@ function ButtonNew_Callback(hObject, eventdata, handles)
     changeCanvasSize(handles, output(1),output(2));
     handles.Image = ones(output(1),output(2),3);
     handles.ImagePlot = image(handles.Image);
-
+    guidata(hObject, handles);
 end
 
