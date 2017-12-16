@@ -51,6 +51,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.Image = ones(Position(3),Position(4),3);
     handles.ImagePlot = image(handles.Image);
     set(handles.ImagePlot,'ButtonDownFcn',@clickedOnImage);
+    set (gcf, 'WindowButtonMotionFcn', @mouseMove);
     % Update handles structure
     guidata(hObject, handles);
 
