@@ -48,20 +48,15 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
 
     handles.output = hObject;
     Position = get(handles.ImageBox,'Position');
-    % --------------------------
-    %      Global variables
-    % --------------------------
-    handles.mouseDown = false;
     handles.Image = ones(Position(3),Position(4),3);
     handles.ImagePlot = image(handles.Image);
     
-    % ----------------------
-    %      Mouse events
-    % ----------------------
+    
     set(handles.ImagePlot,'ButtonDownFcn',@clickedOnImage);
     set (gcf, 'WindowButtonMotionFcn', @mouseMove);
     set(gcf, 'WindowButtonDownFcn', @mouseDown);
     set(gcf, 'WindowButtonUpFcn', @mouseUp);
+    
     
     
     % Update handles structure
