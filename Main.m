@@ -57,6 +57,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.currentMousePos = [0 0];
     handles.previousMousePos = [0 0];
     handles.pencilSize = 1;
+    handles.brushShape = [1; 1];
     
     % ----------------------
     %      Mouse events

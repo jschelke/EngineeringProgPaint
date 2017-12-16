@@ -6,8 +6,8 @@ function mouseMove (hObject, eventdata)
     set(handles.YposText, 'String', ['Y: ', num2str(handles.currentMousePos(1,2))]);
     
     if handles.mouseDown == true
-        set(handles.XclickPos, 'String', ['X: ', num2str(handles.currentMousePos(1,1))]);
-        set(handles.YclickPos, 'String', ['Y: ', num2str(handles.currentMousePos(1,2))]);
+        set(handles.XclickPos, 'String', ['X: ', num2str(handles.previousMousePos(1,1))]);
+        set(handles.YclickPos, 'String', ['Y: ', num2str(handles.previousMousePos(1,2))]);
         
         pixelsToDraw = pencilDraw(handles);
         
