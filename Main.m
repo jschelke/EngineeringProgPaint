@@ -63,7 +63,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     %      Mouse events
     % ----------------------
     set(handles.ImagePlot,'ButtonDownFcn',@clickedOnImage);
-    set (gcf, 'WindowButtonMotionFcn', @mouseMove);
+    set(gcf, 'WindowButtonMotionFcn', @mouseMove);
     set(gcf, 'WindowButtonDownFcn', @mouseDown);
     set(gcf, 'WindowButtonUpFcn', @mouseUp);
     
