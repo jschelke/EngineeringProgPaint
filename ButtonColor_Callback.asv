@@ -1,0 +1,4 @@
+function ButtonColor_Callback(hObject, eventdata, handles)
+handles.SeColourPalette
+
+end
