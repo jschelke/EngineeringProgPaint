@@ -59,7 +59,8 @@ end
 % --- Outputs from this function are returned to the command line.
 function varargout = NewImage_OutputFcn(hObject, eventdata, handles)
     handles.output = hObject;
-    varargout{1} = [get(handles,'Width') get(handles,'Height')];
+    varargout{1} = [ceil(str2double(get(handles.EditWidth,'String')))  ceil(str2double(get(handles.EditHeight,'String')))];
+    
     % The figure can be deleted now
     delete(handles.figure1);
 end
