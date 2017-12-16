@@ -22,7 +22,7 @@ function varargout = Main(varargin)
 
 % Edit the above text to modify the response to help Main
 
-% Last Modified by GUIDE v2.5 16-Dec-2017 17:05:31
+% Last Modified by GUIDE v2.5 16-Dec-2017 17:27:37
 
 % Begin initialization code - DO NOT EDIT
     gui_Singleton = 1;
@@ -50,9 +50,15 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     Position = get(handles.ImageBox,'Position');
     handles.Image = ones(Position(3),Position(4),3);
     handles.ImagePlot = image(handles.Image);
+    
+    
     set(handles.ImagePlot,'ButtonDownFcn',@clickedOnImage);
     set (gcf, 'WindowButtonMotionFcn', @mouseMove);
-    set(gcf, 'WindowButtonDownFcn', @getMousePositionOnImage);
+    set(gcf, 'WindowButtonDownFcn', @mouseDown);
+    set(gcf, 'WindowButtonUpFcn', @mouseUp);
+    
+    
+    
     % Update handles structure
     guidata(hObject, handles);
 
@@ -63,5 +69,3 @@ function varargout = Main_OutputFcn(hObject, eventdata, handles)
 
     varargout{1} = handles.output;
 end
-
-
