@@ -18,10 +18,11 @@ function mouseDown (hObject, eventdata)
         case 2 %Remove Red Eyes
             currentXpos = ceil(handles.currentMousePos(1,2));
             currentYpos = ceil(handles.currentMousePos(1,1));
-            Position = handles.ImageBox.Position;
+            ImageMatrix = handles.Image;
+            MatrixSize = size(ImageMatrix);
             
-            if(currentXpos >0 && currentXpos <Position(3) && currentYpos >0 && currentYpos < Position(4))
-                ImageMatrix = handles.Image;
+            if(currentXpos >0 && currentXpos <MatrixSize(1) && currentYpos >0 && currentYpos < MatrixSize(2))
+                
                 RedEyesColor = ImageMatrix(currentXpos,currentYpos,:);
                 PartSize = ceil(str2double(get(handles.pencilSizeValue,'String')))/2;
 
@@ -34,14 +35,14 @@ function mouseDown (hObject, eventdata)
                 if(LeftBound <1)
                     LeftBound = 1;
                 end
-                if(RightBound>Position(3))
-                    RightBound = Postion(3);
+                if(RightBound>MatrixSize(1))
+                    RightBound = MatrixSize(1);
                 end
                 if(LowerBound <1)
                     LowerBound = 1;
                 end
-                if(UpperBound>Position(4))
-                    UpperBound = Postion(4);
+                if(UpperBound>MatrixSize(2))
+                    UpperBound = MatrixSize(2);
                 end
 
 %                 PartMatrix = ImageMatrix(LeftBound:RightBound , LowerBound:UpperBound , :);
@@ -84,8 +85,8 @@ function mouseDown (hObject, eventdata)
                 ImageMatrix(logicalMatrix) = colorLayer(logicalMatrix);
 
 %                 ImageMatrix(LeftBound:RightBound,LowerBound:UpperBound,:) = PartMatrix;
-                handles.Image = ImageMatrix;
-                handles.ImagePlot = image(handles.Image);
+                handles.ImageShow = ImageMatrix;
+                handles.ImagePlot = image(handles.ImageShow);
                
 
             end
