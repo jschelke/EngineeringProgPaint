@@ -1,5 +1,5 @@
-function pixelsToDraw = pencilDraw (handles)
-    pixelsToDraw = handles.Image;
+function pixelToDraw = pencilDraw (handles)
+    %pixelToDraw = handles.Image;
     
     % ------------------------------------
     %      Mouse positon calculations
@@ -25,6 +25,7 @@ function pixelsToDraw = pencilDraw (handles)
     xDiff = currentXpos - prevXpos;
     yDiff = currentYpos - prevYpos;
     
+    pixelToDraw = zeros(imageYsize, imageXsize);
     
     % -----------------------------------------
     %      Interpolate between mouse jumps
@@ -35,26 +36,29 @@ function pixelsToDraw = pencilDraw (handles)
         if xDiff >= 0
             for x = prevXpos:currentXpos
                 y = round(yDiff / xDiff * (x - prevXpos) + prevYpos);  
-                pixelsToDraw(y, x, :) = 0;
+                %drawing(y, x, :) = 0;
+                pixelToDraw = drawShape(handles, pixelToDraw, x, y);
             end
         else
             for x = prevXpos:-1:currentXpos
                 y = round(yDiff / xDiff * (x - prevXpos) + prevYpos);
-                pixelsToDraw(y, x, :) = 0;
+                pixelToDraw = drawShape(handles, pixelToDraw, x, y);
             end
         end 
     else
         if yDiff >= 0
             for y = prevYpos:currentYpos
                 x = round(xDiff / yDiff * (y - prevYpos) + prevXpos);
-                pixelsToDraw(y, x, :) = 0;
+                pixelToDraw = drawShape(handles, pixelToDraw, x, y);
             end
         else
             for y = prevYpos:-1:currentYpos
                 x = round(xDiff / yDiff * (y - prevYpos) + prevXpos);
-                pixelsToDraw(y, x , :) = 0;
+                pixelToDraw = drawShape(handles, pixelToDraw, x, y);
+                %pixelToDraw(y, x , :) = 0;
             end
         end
     end
         
+    pixelToDraw = logical(pixelToDraw);
 end
