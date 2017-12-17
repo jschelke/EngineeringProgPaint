@@ -19,7 +19,5 @@ function mouseMove (hObject, eventdata)
         handles.Image(pixelsToDraw) = colorLayer(pixelsToDraw);
         handles.ImagePlot = image(handles.Image);
     end
-    
-    handles.SelectedColor
     guidata(hObject, handles);
 end
