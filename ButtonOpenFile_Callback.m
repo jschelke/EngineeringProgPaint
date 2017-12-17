@@ -5,9 +5,11 @@ SupportedFormats = {'*.jpg;*.bmp;*.png*',...
 
 %[filename, pathname] = uigetfile(SupportedFormats);
 pathname = [pwd, '\'];
-filename = 'RedEyes.png';
+filename = 'RedEyes2.jpg';
 
 handles.Image = imread([pathname filename]);
+handles.Image = double(handles.Image) / 255;
+caxis([0 1]);
 ImageSize = size(handles.Image);
 changeCanvasSize(handles,ImageSize(2),ImageSize(1));
 
