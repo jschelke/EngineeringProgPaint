@@ -54,6 +54,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.mouseDown = false;
     handles.Image = ones(Position(3),Position(4),3);
     handles.ImagePlot = image(handles.Image);
+    handles.ImageShow = handles.Image;
     handles.currentMousePos = [0 0];
     handles.previousMousePos = [0 0];
     handles.pencilSize = 1;
