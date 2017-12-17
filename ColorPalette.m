@@ -22,7 +22,7 @@ function varargout = ColorPalette(varargin)
 
 % Edit the above text to modify the response to help ColorPalette
 
-% Last Modified by GUIDE v2.5 16-Dec-2017 21:07:15
+% Last Modified by GUIDE v2.5 17-Dec-2017 13:26:38
 
 % Begin initialization code - DO NOT EDIT
     gui_Singleton = 1;
@@ -51,8 +51,11 @@ function ColorPalette_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.Color = [0 0 0];
     handles.ColorMatrix = zeros(75,75,3);
     handles.ImageDisplay = image(handles.ColorMatrix);
+    handles.Ok = false;
     % Update handles structure
     guidata(hObject, handles);
+    
+    uiwait(handles.figure1);
 end
 
 % UIWAIT makes ColorPalette wait for user response (see UIRESUME)
@@ -61,7 +64,15 @@ end
 
 % --- Outputs from this function are returned to the command line.
 function varargout = ColorPalette_OutputFcn(hObject, eventdata, handles) 
-    varargout{1} = handles.output;
+    handles.output = hObject;
+    if(handles.Ok)
+        varargout{1} = handles.Color;
+    else
+        varargout{1} = [];
+    end
+    
+    % The figure can be deleted now
+    delete(handles.figure1);
 end
 
 
@@ -140,6 +151,9 @@ function ButtonOK_Callback(hObject, eventdata, handles)
     % hObject    handle to ButtonOK (see GCBO)
     % eventdata  reserved - to be defined in a future version of MATLAB
     % handles    structure with handles and user data (see GUIDATA)
+    handles.Ok = true;
+    guidata(hObject, handles);
+    close;
 end
 
 % --- Executes on button press in ButtonCancel.
@@ -147,6 +161,7 @@ function ButtonCancel_Callback(hObject, eventdata, handles)
     % hObject    handle to ButtonCancel (see GCBO)
     % eventdata  reserved - to be defined in a future version of MATLAB
     % handles    structure with handles and user data (see GUIDATA)
+    close;
 end
 
 function changeMatrix(handles)
@@ -154,4 +169,16 @@ function changeMatrix(handles)
         handles.ColorMatrix(:,:,i) =  handles.Color(i);
     end
     handles.ImageDisplay = image(handles.ColorMatrix);
+end
+
+
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+    if isequal(get(hObject, 'waitstatus'), 'waiting')
+    % The GUI is still in UIWAIT, us UIRESUME
+        uiresume(hObject);
+    else
+    % The GUI is no longer waiting, just close it
+        delete(hObject);
+    end
 end

@@ -51,7 +51,7 @@ function NewImage_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.output = hObject;
 
     guidata(hObject, handles);
-    uiwait(handles.figure1)
+    uiwait(handles.figure1);
 
 end
 

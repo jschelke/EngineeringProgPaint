@@ -33,27 +33,29 @@ function pixelToDraw = pencilDraw (handles)
     if xDiff == 0 && yDiff == 0
         % Do nothing
     elseif abs(xDiff) >= abs(yDiff)
+        gradient = yDiff/xDiff;
         if xDiff >= 0
             for x = prevXpos:currentXpos
-                y = round(yDiff / xDiff * (x - prevXpos) + prevYpos);  
+                y = round(gradient * (x - prevXpos) + prevYpos);  
                 %drawing(y, x, :) = 0;
                 pixelToDraw = drawShape(handles, pixelToDraw, x, y);
             end
         else
             for x = prevXpos:-1:currentXpos
-                y = round(yDiff / xDiff * (x - prevXpos) + prevYpos);
+                y = round(gradient * (x - prevXpos) + prevYpos);
                 pixelToDraw = drawShape(handles, pixelToDraw, x, y);
             end
         end 
     else
+        gradient = xDiff/yDiff;
         if yDiff >= 0
             for y = prevYpos:currentYpos
-                x = round(xDiff / yDiff * (y - prevYpos) + prevXpos);
+                x = round(gradient * (y - prevYpos) + prevXpos);
                 pixelToDraw = drawShape(handles, pixelToDraw, x, y);
             end
         else
             for y = prevYpos:-1:currentYpos
-                x = round(xDiff / yDiff * (y - prevYpos) + prevXpos);
+                x = round(gradient * (y - prevYpos) + prevXpos);
                 pixelToDraw = drawShape(handles, pixelToDraw, x, y);
                 %pixelToDraw(y, x , :) = 0;
             end
