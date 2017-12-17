@@ -22,7 +22,7 @@ function varargout = Main(varargin)
 
 % Edit the above text to modify the response to help Main
 
-% Last Modified by GUIDE v2.5 17-Dec-2017 13:38:02
+% Last Modified by GUIDE v2.5 17-Dec-2017 15:06:54
 
 % Begin initialization code - DO NOT EDIT
     gui_Singleton = 1;
@@ -58,6 +58,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.previousMousePos = [0 0];
     handles.pencilSize = 1;
     handles.pencilShape = [1];
+    handles.pencilShapeSelected = 1;
     handles.SelectedColor = [0,0,0];
     
     % ----------------------
@@ -79,6 +80,17 @@ function varargout = Main_OutputFcn(hObject, eventdata, handles)
 
     varargout{1} = handles.output;
 end
+
+
+
+
+
+
+
+
+
+
+
 
 
 
