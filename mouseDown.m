@@ -181,7 +181,11 @@ function mouseDown (hObject, eventdata)
             
             
         case 5 %Negative
-       
+            ImageMatrix = handles.ImageShow;
+            ImageMatrix = uint8(ones(size(ImageMatrix)))*255-(ImageMatrix);
+            handles.ImageShow = ImageMatrix;g
+            handles.ImagePlot = image(handles.ImageShow);
+            
             
     end
         
