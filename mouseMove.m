@@ -13,7 +13,7 @@ function mouseMove (hObject, eventdata)
         color(1,1,1) = handles.SelectedColor(1);
         color(1,1,2) = handles.SelectedColor(2);
         color(1,1,3) = handles.SelectedColor(3);
-        colorLayer = ones(imageYsize, imageXsize, 3) .* color;
+        colorLayer = ones(imageYsize, imageXsize, 3) .* color * 255;
         pixelsToDraw = pencilDraw(handles);
         pixelsToDraw = repmat(pixelsToDraw, [1 1 3]);
         handles.Image(pixelsToDraw) = colorLayer(pixelsToDraw);

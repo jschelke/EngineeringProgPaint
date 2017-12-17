@@ -1,6 +1,4 @@
 function shape = updatePencilShape(handles)
-    
-    handles.pencilShapeSelected
     switch handles.pencilShapeSelected
         case 1  % Circle
             shape = zeros(handles.pencilSize);

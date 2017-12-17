@@ -4,7 +4,7 @@ SupportedFormats = {'*.jpg;*.bmp;*.png*',...
  'Picture Formats (*.jpg,*.bmp,*.png)'}; %These formats are now supported
 
 %[filename, pathname] = uigetfile(SupportedFormats);
-pathname = 'D:\Users\Jeroen\Pictures\';
+pathname = [pwd, '\'];
 filename = 'test1.png';
 
 handles.Image = imread([pathname filename]);
