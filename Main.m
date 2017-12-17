@@ -60,6 +60,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.pencilShape = [1];
     handles.pencilShapeSelected = 1;
     handles.SelectedColor = [0,0,0];
+    handles.zoomValue = 100;
     
     % ----------------------
     %      Mouse events

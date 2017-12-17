@@ -5,4 +5,8 @@ function zoomTextInputValue_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of zoomTextInputValue as text
 %        str2double(get(hObject,'String')) returns contents of zoomTextInputValue as a double
+    handles = guidata(hObject);
+    handles.zoomValue = str2double(get(handles.zoomTextInputValue, 'String'));
+    set(handles.zoomSliderValue, 'Value', handles.zoomValue);
+    guidata(hObject, handles); 
 end

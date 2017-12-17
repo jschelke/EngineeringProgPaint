@@ -6,4 +6,12 @@ function zoomSliderValue_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+    handles = guidata(hObject);
+    handles.zoomValue = round(get(handles.zoomSliderValue, 'Value'));
+    set(handles.zoomTextInputValue, 'String', num2str(handles.zoomValue));
+    
+    [imageYsize, imageXsize, ~] = size(handles.Image);
+    
+    
+    guidata(hObject, handles); 
 end
