@@ -26,10 +26,10 @@ function mouseDown (hObject, eventdata)
                
                tolerance = get(handles.SliderEffects,'Value');
                
-               LeftBound = currentXpos-PartSize;
-               RightBound = currentXpos+PartSize;
-               LowerBound = currentYpos-PartSize;
-               UpperBound = currentYpos+PartSize;
+               LeftBound = ceil(currentXpos-PartSize);
+               RightBound = ceil(currentXpos+PartSize);
+               LowerBound = ceil(currentYpos-PartSize);
+               UpperBound = ceil(currentYpos+PartSize);
                if(LeftBound <1)
                    LeftBound = 1;
                end
@@ -43,15 +43,23 @@ function mouseDown (hObject, eventdata)
                    UpperBound = Postion(4);
                end
                
-               PartMatrix = ImageMatrix(LeftBound:RightBound,LowerBound:UpperBound,:);
+               PartMatrix = ImageMatrix(LeftBound:RightBound , LowerBound:UpperBound , :);
                LogicalMatrix = (PartMatrix(:,:,1)<=(RedEyesColor(1,1,1)*(1+tolerance))) + (PartMatrix(:,:,1) >= (RedEyesColor(1,1,1)*(1-tolerance)));
                LogicalMatrix = LogicalMatrix + (PartMatrix(:,:,2)<=(RedEyesColor(1,1,2)*(1+tolerance))) + (PartMatrix(:,:,2) >= (RedEyesColor(1,1,2)*(1-tolerance)));
                LogicalMatrix = LogicalMatrix + (PartMatrix(:,:,3)<=(RedEyesColor(1,1,3)*(1+tolerance))) + (PartMatrix(:,:,3) >= (RedEyesColor(1,1,3)*(1-tolerance)));
-
+               LogicalMatrix = floor(LogicalMatrix/6);
+               colorLayer = zeros(size(PartMatrix));
+               LogicalMatrix = ceil(repmat(LogicalMatrix, [1 1 3]));
+               PartMatrix(LogicalMatrix) = colorLayer(LogicalMatrix);
+               
+               
+               ImageMatrix(LeftBound:RightBound,LowerBound:UpperBound,:) = PartMatrix;
+               handles.Image = ImageMatrix;
+               handles.ImagePlot = image(handles.Image);
+               
 
            end
-               
-           RedEyesColor = RedEyesColor(1)
+
         case 3 %Gray
             
             

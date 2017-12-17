@@ -9,5 +9,5 @@ function SliderEffects_Callback(hObject, eventdata, handles)
     set(handles.LabelEffects,'String', [num2str(round(get(handles.SliderEffects,'Value')*100)) '%']);
     % Update handles structure
     guidata(hObject, handles);
-    
+        
 end
