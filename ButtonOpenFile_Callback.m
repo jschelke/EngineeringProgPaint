@@ -5,7 +5,7 @@ SupportedFormats = {'*.jpg;*.bmp;*.png*',...
 
 %[filename, pathname] = uigetfile(SupportedFormats);
 pathname = [pwd, '\'];
-filename = 'test1.png';
+filename = 'RedEyes.png';
 
 handles.Image = imread([pathname filename]);
 ImageSize = size(handles.Image);

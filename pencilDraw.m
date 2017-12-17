@@ -4,7 +4,7 @@ function pixelToDraw = pencilDraw (handles)
     % ------------------------------------
     %      Mouse positon calculations
     % ------------------------------------
-    [imageYsize, imageXsize, ~] = size(handles.Image);
+    [imageYsize, imageXsize, ~] = size(handles.ImageShow);
     
     currentXpos = round(handles.currentMousePos(1,1));
     if currentXpos > imageXsize; currentXpos = imageXsize; end

@@ -5,15 +5,15 @@ function mouseDown (hObject, eventdata)
     switch (get(handles.ListBoxEffects,'Value'))
         case 1 %Pensil
             handles.mouseDown = true;
-            [imageYsize, imageXsize, ~] = size(handles.Image);
+            [imageYsize, imageXsize, ~] = size(handles.ImageShow);
             color(1,1,1) = handles.SelectedColor(1);
             color(1,1,2) = handles.SelectedColor(2);
             color(1,1,3) = handles.SelectedColor(3);
             colorLayer = ones(imageYsize, imageXsize, 3) .* color;
             pixelsToDraw = pencilDraw(handles);
             pixelsToDraw = repmat(pixelsToDraw, [1 1 3]);
-            handles.Image(pixelsToDraw) = colorLayer(pixelsToDraw);
-            handles.ImagePlot = image(handles.Image);
+            handles.ImageShow(pixelsToDraw) = colorLayer(pixelsToDraw);
+            handles.ImagePlot = image(handles.ImageShow);
         
         case 2 %Fill
             currentXpos = ceil(handles.currentMousePos(1,2));
