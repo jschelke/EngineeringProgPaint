@@ -87,8 +87,6 @@ function mouseDown (hObject, eventdata)
                 
                 handles.ImageShow = ImageMatrix;
                 handles.ImagePlot = image(handles.ImageShow);
-               
-
             end
            
         case 3 %Remove Red Eyes
@@ -169,8 +167,17 @@ function mouseDown (hObject, eventdata)
             
             
         case 4 %Gray
+            ImageMatrix = handles.ImageShow;
+            RedChannel = ImageMatrix(:,:,1);
+            GreenChannel = ImageMatrix(:,:,2);
+            BlueChannel = ImageMatrix(:,:,3);
+            WeightedSum = [sum(sum(ImageMatrix(:,:,1))) sum(sum(ImageMatrix(:,:,2))) sum(sum(ImageMatrix(:,:,3)))];
+            WeightedSum = WeightedSum./sum(WeightedSum);
             
-            
+            handles.ImageShow(:,:,1) = (RedChannel*WeightedSum(1) + GreenChannel*WeightedSum(2)+ BlueChannel*WeightedSum(3));
+            handles.ImageShow(:,:,2) = (RedChannel*WeightedSum(1) + GreenChannel*WeightedSum(2)+ BlueChannel*WeightedSum(3));
+            handles.ImageShow(:,:,3) = (RedChannel*WeightedSum(1) + GreenChannel*WeightedSum(2)+ BlueChannel*WeightedSum(3));
+            handles.ImagePlot = image(handles.ImageShow);
             
             
         case 5 %Negative
