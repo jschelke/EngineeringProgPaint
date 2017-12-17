@@ -8,5 +8,10 @@ function zoomTextInputValue_Callback(hObject, eventdata, handles)
     handles = guidata(hObject);
     handles.zoomValue = str2double(get(handles.zoomTextInputValue, 'String'));
     set(handles.zoomSliderValue, 'Value', handles.zoomValue);
+    
+    [imageYsize, imageXsize, ~] = size(handles.Image);
+    handles.imageAxesLimits = [1 (imageXsize * 100 / handles.zoomValue); 1 (imageYsize * 100 / handles.zoomValue)];
+    setImageAxis(handles);
+    
     guidata(hObject, handles); 
 end

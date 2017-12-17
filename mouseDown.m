@@ -14,6 +14,7 @@ function mouseDown (hObject, eventdata)
             pixelsToDraw = repmat(pixelsToDraw, [1 1 3]);
             handles.ImageShow(pixelsToDraw) = colorLayer(pixelsToDraw);
             handles.ImagePlot = image(handles.ImageShow);
+            setImageAxis(handles);
         
         case 2 %Fill
             currentXpos = ceil(handles.currentMousePos(1,2));
@@ -45,14 +46,6 @@ function mouseDown (hObject, eventdata)
                     UpperBound = MatrixSize(2);
                 end
 
-%                 PartMatrix = ImageMatrix(LeftBound:RightBound , LowerBound:UpperBound , :);
-%                 LogicalMatrix = (PartMatrix(:,:,1)<=(RedEyesColor(1,1,1)*(1+tolerance))) + (PartMatrix(:,:,1) >= (RedEyesColor(1,1,1)*(1-tolerance)));
-%                 LogicalMatrix = LogicalMatrix + (PartMatrix(:,:,2)<=(RedEyesColor(1,1,2)*(1+tolerance))) + (PartMatrix(:,:,2) >= (RedEyesColor(1,1,2)*(1-tolerance)));
-%                 LogicalMatrix = LogicalMatrix + (PartMatrix(:,:,3)<=(RedEyesColor(1,1,3)*(1+tolerance))) + (PartMatrix(:,:,3) >= (RedEyesColor(1,1,3)*(1-tolerance)));
-%                 LogicalMatrix = floor(LogicalMatrix/6);
-%                 colorLayer = zeros(size(PartMatrix));
-%                 LogicalMatrix = ceil(repmat(LogicalMatrix, [1 1 3]));
-%                 PartMatrix(LogicalMatrix) = colorLayer(LogicalMatrix);
                 [imageYsize, imageXsize, ~] = size(handles.Image);
                 PartMatrix = ImageMatrix(LeftBound:RightBound - 1, LowerBound:UpperBound - 1, :);
                 
@@ -81,12 +74,12 @@ function mouseDown (hObject, eventdata)
                 color(1,1,1) = handles.SelectedColor(1);
                 color(1,1,2) = handles.SelectedColor(2);
                 color(1,1,3) = handles.SelectedColor(3);
-                colorLayer = ones(imageYsize, imageXsize, 3) .* color * 255;
+                colorLayer = ones(imageYsize, imageXsize, 3) .* color;
                 ImageMatrix(logicalMatrix) = colorLayer(logicalMatrix);
-                
                 
                 handles.ImageShow = ImageMatrix;
                 handles.ImagePlot = image(handles.ImageShow);
+                setImageAxis(handles);
             end
            
         case 3 %Remove Red Eyes
@@ -119,14 +112,6 @@ function mouseDown (hObject, eventdata)
                     UpperBound = MatrixSize(2);
                 end
 
-%                 PartMatrix = ImageMatrix(LeftBound:RightBound , LowerBound:UpperBound , :);
-%                 LogicalMatrix = (PartMatrix(:,:,1)<=(RedEyesColor(1,1,1)*(1+tolerance))) + (PartMatrix(:,:,1) >= (RedEyesColor(1,1,1)*(1-tolerance)));
-%                 LogicalMatrix = LogicalMatrix + (PartMatrix(:,:,2)<=(RedEyesColor(1,1,2)*(1+tolerance))) + (PartMatrix(:,:,2) >= (RedEyesColor(1,1,2)*(1-tolerance)));
-%                 LogicalMatrix = LogicalMatrix + (PartMatrix(:,:,3)<=(RedEyesColor(1,1,3)*(1+tolerance))) + (PartMatrix(:,:,3) >= (RedEyesColor(1,1,3)*(1-tolerance)));
-%                 LogicalMatrix = floor(LogicalMatrix/6);
-%                 colorLayer = zeros(size(PartMatrix));
-%                 LogicalMatrix = ceil(repmat(LogicalMatrix, [1 1 3]));
-%                 PartMatrix(LogicalMatrix) = colorLayer(LogicalMatrix);
                 [imageYsize, imageXsize, ~] = size(handles.Image);
                 PartMatrix = ImageMatrix(LeftBound:RightBound - 1, LowerBound:UpperBound - 1, :);
                 
@@ -152,17 +137,12 @@ function mouseDown (hObject, eventdata)
                 logicalMatrix = logical(logicalMatrix);
                 logicalMatrix = repmat(logicalMatrix, [1 1 3]);
                 
-                color(1,1,1) = handles.SelectedColor(1);
-                color(1,1,2) = handles.SelectedColor(2);
-                color(1,1,3) = handles.SelectedColor(3);
                 colorLayer = zeros(imageYsize, imageXsize, 3);
                 ImageMatrix(logicalMatrix) = colorLayer(logicalMatrix);
-                
-                
+                       
                 handles.ImageShow = ImageMatrix;
                 handles.ImagePlot = image(handles.ImageShow);
-               
-
+                setImageAxis(handles);
             end
             
             
@@ -178,14 +158,14 @@ function mouseDown (hObject, eventdata)
             handles.ImageShow(:,:,2) = (RedChannel*WeightedSum(1) + GreenChannel*WeightedSum(2)+ BlueChannel*WeightedSum(3));
             handles.ImageShow(:,:,3) = (RedChannel*WeightedSum(1) + GreenChannel*WeightedSum(2)+ BlueChannel*WeightedSum(3));
             handles.ImagePlot = image(handles.ImageShow);
-            
+            setImageAxis(handles);
             
         case 5 %Negative
             ImageMatrix = handles.ImageShow;
             ImageMatrix = ones(size(ImageMatrix))-(ImageMatrix);
             handles.ImageShow = ImageMatrix;
             handles.ImagePlot = image(handles.ImageShow);
-            
+            setImageAxis(handles);
             
     end
         

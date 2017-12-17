@@ -18,6 +18,7 @@ changeCanvasSize(handles,ImageSize(2),ImageSize(1));
 
 handles.ImageShow = handles.Image;
 handles.ImagePlot = image(handles.Image);
+setImageAxis(handles);
 
 guidata(hObject, handles);
 

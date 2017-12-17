@@ -5,6 +5,6 @@ function ButtonEffectsOk_Callback(hObject, eventdata, handles)
     handles.output = hObject;
     handles.Image = handles.ImageShow;
     handles.ImagePlot = image(handles.Image);
-    
+    setImageAxis(handles);
     guidata(hObject, handles);
 end

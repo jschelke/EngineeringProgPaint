@@ -7,5 +7,6 @@ function ButtonEffectsCancel_Callback(hObject, eventdata, handles)
     handles.output = hObject;
     handles.ImageShow = handles.Image;
     handles.ImagePlot = image(handles.Image);
+    setImageAxis(handles);
     guidata(hObject, handles);
 end
