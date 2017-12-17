@@ -12,15 +12,6 @@ function pencilSizeValue_Callback(hObject, eventdata, handles)
     handles.pencilSize = str2double(get(hObject, 'String'));
     
     handles.pencilShape = updatePencilShape(handles);
-    
-%     handles.pencilShape = zeros(handles.pencilSize);
-%     for y = 1:handles.pencilSize
-%         for x = 1:handles.pencilSize
-%             if round(sqrt((x - handles.pencilSize / 2 - 0.5)^2 + (y - handles.pencilSize / 2 - 0.5)^2)) <= handles.pencilSize / 2
-%                 handles.pencilShape(y, x) = 1;
-%             end
-%         end
-%     end
 
     guidata(hObject, handles);
 end
