@@ -22,7 +22,7 @@ function mouseDown (hObject, eventdata)
             ImageMatrix = handles.ImageShow;
             MatrixSize = size(ImageMatrix);
             
-            if(currentXpos >0 && currentXpos <MatrixSize(1) && currentYpos >0 && currentYpos < MatrixSize(2))
+            if(currentXpos > 0 && currentXpos < MatrixSize(1) && currentYpos > 0 && currentYpos < MatrixSize(2))
                 
                 RedEyesColor = ImageMatrix(currentXpos,currentYpos,:);
                 PartSize = ceil(str2double(get(handles.pencilSizeValue,'String')))/2;
