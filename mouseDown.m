@@ -57,12 +57,18 @@ function mouseDown (hObject, eventdata)
                     greenPartLowerBoundLogicalMatrix, bluePartUpperBoundLogicalMatrix, bluePartLowerBoundLogicalMatrix] = ...
                     deal(zeros(RightBound - LeftBound, UpperBound - LowerBound));
                 
-                redPartUpperBoundLogicalMatrix(redPartMatrix <= RedEyesColor(1,1,1) * (1 + tolerance)) = 1;
-                redPartLowerBoundLogicalMatrix(redPartMatrix >= RedEyesColor(1,1,1) * (1 - tolerance)) = 1;
-                greenPartUpperBoundLogicalMatrix(greenPartMatrix <= RedEyesColor(1,1,2) * (1 + tolerance)) = 1;
-                greenPartLowerBoundLogicalMatrix(greenPartMatrix >= RedEyesColor(1,1,2) * (1 - tolerance)) = 1;
-                bluePartUpperBoundLogicalMatrix(bluePartMatrix <= RedEyesColor(1,1,3) * (1 + tolerance)) = 1;
-                bluePartLowerBoundLogicalMatrix(bluePartMatrix >= RedEyesColor(1,1,3) * (1 - tolerance)) = 1;
+%                 redPartUpperBoundLogicalMatrix(redPartMatrix <= RedEyesColor(1,1,1) * (1 + tolerance)) = 1;
+%                 redPartLowerBoundLogicalMatrix(redPartMatrix >= RedEyesColor(1,1,1) * (1 - tolerance)) = 1;
+%                 greenPartUpperBoundLogicalMatrix(greenPartMatrix <= RedEyesColor(1,1,2) * (1 + tolerance)) = 1;
+%                 greenPartLowerBoundLogicalMatrix(greenPartMatrix >= RedEyesColor(1,1,2) * (1 - tolerance)) = 1;
+%                 bluePartUpperBoundLogicalMatrix(bluePartMatrix <= RedEyesColor(1,1,3) * (1 + tolerance)) = 1;
+%                 bluePartLowerBoundLogicalMatrix(bluePartMatrix >= RedEyesColor(1,1,3) * (1 - tolerance)) = 1;
+                redPartUpperBoundLogicalMatrix(redPartMatrix <= (RedEyesColor(1,1,1) + tolerance)) = 1;
+                redPartLowerBoundLogicalMatrix(redPartMatrix >= (RedEyesColor(1,1,1) - tolerance)) = 1;
+                greenPartUpperBoundLogicalMatrix(greenPartMatrix <= (RedEyesColor(1,1,2) + tolerance)) = 1;
+                greenPartLowerBoundLogicalMatrix(greenPartMatrix >= (RedEyesColor(1,1,2) - tolerance)) = 1;
+                bluePartUpperBoundLogicalMatrix(bluePartMatrix <= (RedEyesColor(1,1,3) + tolerance)) = 1;
+                bluePartLowerBoundLogicalMatrix(bluePartMatrix >= (RedEyesColor(1,1,3) - tolerance)) = 1;
                 
                 partLogicalMatrix = redPartUpperBoundLogicalMatrix .* redPartLowerBoundLogicalMatrix .* greenPartUpperBoundLogicalMatrix ...
                     .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix;
@@ -123,12 +129,18 @@ function mouseDown (hObject, eventdata)
                     greenPartLowerBoundLogicalMatrix, bluePartUpperBoundLogicalMatrix, bluePartLowerBoundLogicalMatrix] = ...
                     deal(zeros(RightBound - LeftBound, UpperBound - LowerBound));
                 
-                redPartUpperBoundLogicalMatrix(redPartMatrix <= RedEyesColor(1,1,1) * (1 + tolerance)) = 1;
-                redPartLowerBoundLogicalMatrix(redPartMatrix >= RedEyesColor(1,1,1) * (1 - tolerance)) = 1;
-                greenPartUpperBoundLogicalMatrix(greenPartMatrix <= RedEyesColor(1,1,2) * (1 + tolerance)) = 1;
-                greenPartLowerBoundLogicalMatrix(greenPartMatrix >= RedEyesColor(1,1,2) * (1 - tolerance)) = 1;
-                bluePartUpperBoundLogicalMatrix(bluePartMatrix <= RedEyesColor(1,1,3) * (1 + tolerance)) = 1;
-                bluePartLowerBoundLogicalMatrix(bluePartMatrix >= RedEyesColor(1,1,3) * (1 - tolerance)) = 1;
+%                 redPartUpperBoundLogicalMatrix(redPartMatrix <= RedEyesColor(1,1,1) * (1 + tolerance)) = 1;
+%                 redPartLowerBoundLogicalMatrix(redPartMatrix >= RedEyesColor(1,1,1) * (1 - tolerance)) = 1;
+%                 greenPartUpperBoundLogicalMatrix(greenPartMatrix <= RedEyesColor(1,1,2) * (1 + tolerance)) = 1;
+%                 greenPartLowerBoundLogicalMatrix(greenPartMatrix >= RedEyesColor(1,1,2) * (1 - tolerance)) = 1;
+%                 bluePartUpperBoundLogicalMatrix(bluePartMatrix <= RedEyesColor(1,1,3) * (1 + tolerance)) = 1;
+%                 bluePartLowerBoundLogicalMatrix(bluePartMatrix >= RedEyesColor(1,1,3) * (1 - tolerance)) = 1;
+                redPartUpperBoundLogicalMatrix(redPartMatrix <= (RedEyesColor(1,1,1) + tolerance)) = 1;
+                redPartLowerBoundLogicalMatrix(redPartMatrix >= (RedEyesColor(1,1,1) - tolerance)) = 1;
+                greenPartUpperBoundLogicalMatrix(greenPartMatrix <= (RedEyesColor(1,1,2) + tolerance)) = 1;
+                greenPartLowerBoundLogicalMatrix(greenPartMatrix >= (RedEyesColor(1,1,2) - tolerance)) = 1;
+                bluePartUpperBoundLogicalMatrix(bluePartMatrix <= (RedEyesColor(1,1,3) + tolerance)) = 1;
+                bluePartLowerBoundLogicalMatrix(bluePartMatrix >= (RedEyesColor(1,1,3) - tolerance)) = 1;
                 
                 partLogicalMatrix = redPartUpperBoundLogicalMatrix .* redPartLowerBoundLogicalMatrix .* greenPartUpperBoundLogicalMatrix ...
                     .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix;
