@@ -6,6 +6,7 @@ function ButtonRotate_Callback(hObject, eventdata, handles)
 
 
     handles.ImagePlot = image(handles.Image);
+    handles.imageAxesLimits = flipud(handles.imageAxesLimits);
     setImageAxis(handles);
 
     guidata(hObject, handles);

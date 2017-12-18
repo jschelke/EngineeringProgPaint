@@ -48,6 +48,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
 
     handles.output = hObject;
     Position = get(handles.ImageBox,'Position');
+    
     % --------------------------
     %      Global variables
     % --------------------------
@@ -73,8 +74,9 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     set(gcf, 'WindowButtonDownFcn', @mouseDown);
     set(gcf, 'WindowButtonUpFcn', @mouseUp);
     
-    
+
     % Update handles structure
+    set(handles.ImageBox, 'XAxisLocation', 'top');
     guidata(hObject, handles);
 
 end

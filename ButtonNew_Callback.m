@@ -5,7 +5,7 @@ function ButtonNew_Callback(hObject, eventdata, handles)
     handles.output = hObject;
     output = NewImage();
     changeCanvasSize(handles, output(1),output(2));
-    handles.Image = ones(output(1),output(2),3);
+    [handles.Image, handles.ImageShow] = deal(ones(output(1),output(2),3));
     handles.ImagePlot = image(handles.Image);
     
     handles.imageAxesLimits = [1 output(2); 1 output(1)];

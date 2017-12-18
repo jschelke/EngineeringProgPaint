@@ -5,7 +5,7 @@ function zoomBtnLeft_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
     handles = guidata(hObject);
     
-    handles.imageAxesLimits = handles.imageAxesLimits - [handles.zoomMoveSpeedValue; 0];
+    handles.imageAxesLimits = handles.imageAxesLimits + [handles.zoomMoveSpeedValue; 0];
     setImageAxis(handles);
     
     guidata(hObject, handles); 
