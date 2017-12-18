@@ -10,6 +10,7 @@ function zoomSliderValue_Callback(hObject, eventdata, handles)
     handles.zoomValue = round(get(handles.zoomSliderValue, 'Value'));
     set(handles.zoomTextInputValue, 'String', num2str(handles.zoomValue));
     
+    
     [imageYsize, imageXsize, ~] = size(handles.Image);
     handles.imageAxesLimits = [1 (imageXsize * 100 / handles.zoomValue); 1 (imageYsize * 100 / handles.zoomValue)];
     setImageAxis(handles);
