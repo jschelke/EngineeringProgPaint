@@ -71,7 +71,7 @@ function mouseDown (hObject, eventdata)
                 bluePartLowerBoundLogicalMatrix(bluePartMatrix >= (RedEyesColor(1,1,3) - tolerance)) = 1;
                 
                 partLogicalMatrix = redPartUpperBoundLogicalMatrix .* redPartLowerBoundLogicalMatrix .* greenPartUpperBoundLogicalMatrix ...
-                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix;
+                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix .* handles.pencilShape;
                 logicalMatrix = zeros(imageYsize, imageXsize);
                 logicalMatrix(LeftBound:RightBound - 1, LowerBound:UpperBound - 1) = partLogicalMatrix;
                 logicalMatrix = logical(logicalMatrix);
@@ -143,7 +143,7 @@ function mouseDown (hObject, eventdata)
                 bluePartLowerBoundLogicalMatrix(bluePartMatrix >= (RedEyesColor(1,1,3) - tolerance)) = 1;
                 
                 partLogicalMatrix = redPartUpperBoundLogicalMatrix .* redPartLowerBoundLogicalMatrix .* greenPartUpperBoundLogicalMatrix ...
-                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix;
+                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix .* handles.pencilShape;
                 logicalMatrix = zeros(imageYsize, imageXsize);
                 logicalMatrix(LeftBound:RightBound - 1, LowerBound:UpperBound - 1) = partLogicalMatrix;
                 logicalMatrix = logical(logicalMatrix);
