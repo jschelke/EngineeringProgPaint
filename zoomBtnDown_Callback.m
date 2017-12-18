@@ -5,5 +5,7 @@ function zoomBtnDown_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
     handles = guidata(hObject);
     
+    
+    
     guidata(hObject, handles); 
 end
