@@ -22,7 +22,7 @@ function varargout = Main(varargin)
 
 % Edit the above text to modify the response to help Main
 
-% Last Modified by GUIDE v2.5 17-Dec-2017 19:51:36
+% Last Modified by GUIDE v2.5 18-Dec-2017 19:54:16
 
 % Begin initialization code - DO NOT EDIT
     gui_Singleton = 1;
@@ -63,6 +63,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.SelectedColor = [0,0,0];
     handles.zoomValue = 100;
     handles.imageAxesLimits = [1 400; 1 400];
+    handles.zoomMoveSpeedValue = 10;
     
     % ----------------------
     %      Mouse events
@@ -83,3 +84,12 @@ function varargout = Main_OutputFcn(hObject, eventdata, handles)
 
     varargout{1} = handles.output;
 end
+
+
+
+
+
+
+
+
+
