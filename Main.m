@@ -65,6 +65,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.zoomValue = 100;
     handles.imageAxesLimits = [1 400; 1 400];
     handles.zoomMoveSpeedValue = 10;
+    handles.maxCanvasSize = 400;
     
     % ----------------------
     %      Mouse events
@@ -76,7 +77,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     
 
     % Update handles structure
-    set(handles.ImageBox, 'XAxisLocation', 'top');
+    %set(handles.ImageBox, 'XAxisLocation', 'top');
     guidata(hObject, handles);
 
 end
