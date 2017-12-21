@@ -3,10 +3,10 @@ function ButtonOpenFile_Callback(hObject, eventdata, handles)
 SupportedFormats = {'*.jpg;*.bmp;*.png*',...
  'Picture Formats (*.jpg,*.bmp,*.png)'}; %These formats are now supported
 
-[filename, pathname] = uigetfile(SupportedFormats);
-%pathname = [pwd, '\'];
+%[filename, pathname] = uigetfile(SupportedFormats);
 
-%filename = 'test.png';
+pathname = [pwd, '\'];
+filename = 'test.png';
 
 %filename = 'RedEyes2.jpg';
 
@@ -19,8 +19,13 @@ changeCanvasSize(handles,ImageSize(2),ImageSize(1));
 handles.ImageShow = handles.Image;
 handles.ImagePlot = image(handles.Image);
 
+
+if (max(ImageSize(1), ImageSize(2)) <= handles.maxCanvasSize)
+    handles.zoomValue = 100;
+else
+    handles.zoomValue = round(100 * handles.maxCanvasSize / max(ImageSize(1), ImageSize(2)));
+end
 handles.imageAxesLimits = [1 ImageSize(2); 1 ImageSize(1)];
-handles.zoomValue = 100;
 set(handles.zoomTextInputValue, 'String', num2str(handles.zoomValue));
 set(handles.zoomSliderValue, 'Value', handles.zoomValue);
 setImageAxis(handles);

@@ -5,7 +5,8 @@ function zoomBtnDown_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
     handles = guidata(hObject);
     
-    
+    handles.imageAxesLimits = handles.imageAxesLimits + [0; handles.zoomMoveSpeedValue];
+    setImageAxis(handles);
     
     guidata(hObject, handles); 
 end

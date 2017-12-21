@@ -22,7 +22,7 @@ function mouseDown (hObject, eventdata)
             ImageMatrix = handles.ImageShow;
             MatrixSize = size(ImageMatrix);
             
-            if(currentXpos >0 && currentXpos <MatrixSize(1) && currentYpos >0 && currentYpos < MatrixSize(2))
+            if(currentXpos > 0 && currentXpos < MatrixSize(1) && currentYpos > 0 && currentYpos < MatrixSize(2))
                 
                 RedEyesColor = ImageMatrix(currentXpos,currentYpos,:);
                 PartSize = ceil(str2double(get(handles.pencilSizeValue,'String')))/2;
@@ -71,7 +71,7 @@ function mouseDown (hObject, eventdata)
                 bluePartLowerBoundLogicalMatrix(bluePartMatrix >= (RedEyesColor(1,1,3) - tolerance)) = 1;
                 
                 partLogicalMatrix = redPartUpperBoundLogicalMatrix .* redPartLowerBoundLogicalMatrix .* greenPartUpperBoundLogicalMatrix ...
-                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix;
+                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix .* handles.pencilShape;
                 logicalMatrix = zeros(imageYsize, imageXsize);
                 logicalMatrix(LeftBound:RightBound - 1, LowerBound:UpperBound - 1) = partLogicalMatrix;
                 logicalMatrix = logical(logicalMatrix);
@@ -143,7 +143,7 @@ function mouseDown (hObject, eventdata)
                 bluePartLowerBoundLogicalMatrix(bluePartMatrix >= (RedEyesColor(1,1,3) - tolerance)) = 1;
                 
                 partLogicalMatrix = redPartUpperBoundLogicalMatrix .* redPartLowerBoundLogicalMatrix .* greenPartUpperBoundLogicalMatrix ...
-                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix;
+                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix .* handles.pencilShape;
                 logicalMatrix = zeros(imageYsize, imageXsize);
                 logicalMatrix(LeftBound:RightBound - 1, LowerBound:UpperBound - 1) = partLogicalMatrix;
                 logicalMatrix = logical(logicalMatrix);
