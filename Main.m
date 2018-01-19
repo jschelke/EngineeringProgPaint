@@ -22,7 +22,7 @@ function varargout = Main(varargin)
 
 % Edit the above text to modify the response to help Main
 
-% Last Modified by GUIDE v2.5 18-Dec-2017 19:54:16
+% Last Modified by GUIDE v2.5 19-Jan-2018 11:10:14
 
 % Begin initialization code - DO NOT EDIT
     gui_Singleton = 1;
@@ -58,7 +58,7 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.ImageShow = handles.Image;
     
     handles.Redo = false;
-    handles.UndoCurrentPos = 2:
+    handles.UndoCurrentPos = 2;
     handles.ImageUndo{10,1} = [];
     handles.ImageUndo(1,1) = {handles.Image};
 
@@ -93,6 +93,9 @@ function varargout = Main_OutputFcn(hObject, eventdata, handles)
 
     varargout{1} = handles.output;
 end
+
+
+
 
 
 
