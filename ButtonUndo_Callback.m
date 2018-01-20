@@ -5,13 +5,16 @@ function ButtonUndo_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
     handles.output = hObject;
     
-    handles.ImageShow = handles.ImageUndo{handles.UndoCurrentPos-1,1};
-    handles.Image = handles.ImageUndo{handles.UndoCurrentPos-1,1};
-    handles.ImagePlot = image(handles.Image);
+%     handles.ImageShow = handles.ImageUndo{handles.UndoCurrentPos-1,1};
+%     handles.Image = handles.ImageUndo{handles.UndoCurrentPos-1,1};
+%     handles.ImagePlot = image(handles.Image);
+%     
+%     handles.UndoCurrentPos = handles.UndoCurrentPos-1;
+%     if(handles.UndoCurrentPos <= 1)
+%         handles.UndoCurrentPos =1;
+%     end
+
+    handles = undoWrite(handles, "undo");
     
-    handles.UndoCurrentPos = handles.UndoCurrentPos-1;
-    if(handles.UndoCurrentPos <= 1)
-        handles.UndoCurrentPos =1;
-    end
     guidata(hObject, handles);
 end

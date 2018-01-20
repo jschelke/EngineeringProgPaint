@@ -19,6 +19,8 @@ function ButtonNew_Callback(hObject, eventdata, handles)
     
     setImageAxis(handles);
 
+    handles = undoWrite(handles, "reset");
+    
     guidata(hObject, handles);
 end
 
