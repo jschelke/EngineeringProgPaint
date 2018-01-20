@@ -1,29 +1,14 @@
 function handles = undoWrite(handles, action)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
-
-%     if(handles.Redo)
-%         handles.ImageUndo(1:UndoCurrentPos,:) = [];
-%         handles.ImageUndo{10,1} = [];
-%         handles.ImageUndo(handles.UndoCurrentPos,1) = handles.Image;
-%         handles.UndoCurrentPos = handles.UndoCurrentPos+1;
-%     elseif(handles.UndoCurrentPos == 11)
-%         handles.ImageUndo(2:end,:) = [];
-%         handles.ImageUndo{10,1} = [];
-%         handles.ImageUndo{10,1} = handles.Image;
-%         handles.UndoCurrentPos = 11;
-%     else
-%         handles.ImageUndo{handles.UndoCurrentPos,1} = handles.Image;
-%         handles.UndoCurrentPos = handles.UndoCurrentPos+1;
-%     end
-    
+ 
     switch action
         case "update"
             if (length(handles.ImageUndo) < handles.maxUndoSteps)
                 handles.ImageUndo{end + 1} = handles.Image;
             else
                 handles.ImageUndo = circshift(handles.ImageUndo, -1);       % Shift all cells 1 to the left
-                handles.ImageUndo{handles.UndoCurrentPos} = handles.Image;      % This replaces the last cell with the new image
+                handles.ImageUndo{end} = handles.Image;      % This replaces the last cell with the new image
             end
             
             % Empty redo list

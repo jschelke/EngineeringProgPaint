@@ -57,17 +57,8 @@ function Main_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.ImagePlot = image(handles.Image);
     handles.ImageShow = handles.Image;
     
-%     handles.ButtonRedo = false;
-%     handles.UndoCurrentPos = 2;
-%     handles.ImageUndo{10,1} = [];
-%     handles.ImageUndo(1,1) = {handles.Image};
-
-%     handles.UndoCurrentPos = 1;
-%     handles.RedoCurrentPos = 0;
-%     handles.ImageUndo{1} = handles.Image;
     handles.ImageUndo = {};
     handles.ImageRedo = {};
-    
     handles.maxUndoSteps = 10;
 
     handles.currentMousePos = [0 0];
