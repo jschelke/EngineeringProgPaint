@@ -6,9 +6,6 @@ function mouseMove (hObject, eventdata)
     set(handles.YposText, 'String', ['Y: ', num2str(round(handles.currentMousePos(1,2)))]);
     
     if handles.mouseDown == true
-        set(handles.XclickPos, 'String', ['X: ', num2str(round(handles.previousMousePos(1,1)))]);
-        set(handles.YclickPos, 'String', ['Y: ', num2str(round(handles.previousMousePos(1,2)))]);
-        
         [imageYsize, imageXsize, ~] = size(handles.ImageShow);
         color(1,1,1) = handles.SelectedColor(1);
         color(1,1,2) = handles.SelectedColor(2);

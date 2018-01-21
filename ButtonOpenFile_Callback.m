@@ -4,10 +4,10 @@ function ButtonOpenFile_Callback(hObject, eventdata, handles)
     SupportedFormats = {'*.jpg;*.bmp;*.png*',...
      'Picture Formats (*.jpg,*.bmp,*.png)'}; %These formats are now supported
 
-    %[filename, pathname] = uigetfile(SupportedFormats);
+    [filename, pathname] = uigetfile(SupportedFormats);
 
-    pathname = [pwd, '\'];
-    filename = 'test.png';
+    %pathname = [pwd, '\'];
+    %filename = 'test.png';
 
     %filename = 'RedEyes2.jpg';
 

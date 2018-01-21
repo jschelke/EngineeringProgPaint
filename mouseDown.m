@@ -65,7 +65,7 @@ function mouseDown (hObject, eventdata)
                 bluePartLowerBoundLogicalMatrix(bluePartMatrix >= (RedEyesColor(1,1,3) - tolerance)) = 1;
                 
                 partLogicalMatrix = redPartUpperBoundLogicalMatrix .* redPartLowerBoundLogicalMatrix .* greenPartUpperBoundLogicalMatrix ...
-                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix .* handles.pencilShape;
+                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix;
                 logicalMatrix = zeros(imageYsize, imageXsize);
                 logicalMatrix(LeftBound:RightBound - 1, LowerBound:UpperBound - 1) = partLogicalMatrix;
                 logicalMatrix = logical(logicalMatrix);
@@ -131,7 +131,7 @@ function mouseDown (hObject, eventdata)
                 bluePartLowerBoundLogicalMatrix(bluePartMatrix >= (RedEyesColor(1,1,3) - tolerance)) = 1;
                 
                 partLogicalMatrix = redPartUpperBoundLogicalMatrix .* redPartLowerBoundLogicalMatrix .* greenPartUpperBoundLogicalMatrix ...
-                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix .* handles.pencilShape;
+                    .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix;
                 logicalMatrix = zeros(imageYsize, imageXsize);
                 logicalMatrix(LeftBound:RightBound - 1, LowerBound:UpperBound - 1) = partLogicalMatrix;
                 logicalMatrix = logical(logicalMatrix);
@@ -168,6 +168,24 @@ function mouseDown (hObject, eventdata)
             handles.ImagePlot = image(handles.ImageShow);
             setImageAxis(handles);
             
+        case 6 %Edge detect
+            strength = get(handles.SliderEffects, 'Value');
+            ImageMatrix = handles.ImageShow;
+            div = divergence(repmat(ImageMatrix(:, :, 1), [1, 1, 3]), repmat(ImageMatrix(:, :, 2), [1, 1, 3]), repmat(ImageMatrix(:, :, 3), [1, 1, 3]));
+            handles.ImageShow = div * strength * 100;
+            handles.ImagePlot = image(handles.ImageShow);
+            setImageAxis(handles);
+            
+        case 7 %Blur
+            strength = get(handles.SliderEffects, 'Value');
+            ImageMatrix = handles.ImageShow;
+            shape = ones(round(strength  * 100) + 1) / (round(strength * 100) + 1)^2;
+            blurred(:, :, 1) = conv2(ImageMatrix(:, :, 1), shape, 'same');
+            blurred(:, :, 2) = conv2(ImageMatrix(:, :, 2), shape, 'same');
+            blurred(:, :, 3) = conv2(ImageMatrix(:, :, 3), shape, 'same');
+            handles.ImageShow = blurred;
+            handles.ImagePlot = image(handles.ImageShow);
+            setImageAxis(handles);
     end
         
     guidata(hObject, handles);
