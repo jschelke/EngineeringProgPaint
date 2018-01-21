@@ -24,7 +24,7 @@ function mouseDown (hObject, eventdata)
             
             if(currentXpos > 0 && currentXpos < MatrixSize(1) && currentYpos > 0 && currentYpos < MatrixSize(2))
                 
-                RedEyesColor = ImageMatrix(currentXpos,currentYpos,:);
+                clickedColor = ImageMatrix(currentXpos,currentYpos,:);
                 PartSize = ceil(str2double(get(handles.pencilSizeValue,'String')))/2;
 
                 tolerance = get(handles.SliderEffects,'Value');
@@ -57,12 +57,12 @@ function mouseDown (hObject, eventdata)
                     greenPartLowerBoundLogicalMatrix, bluePartUpperBoundLogicalMatrix, bluePartLowerBoundLogicalMatrix] = ...
                     deal(zeros(RightBound - LeftBound, UpperBound - LowerBound));
                 
-                redPartUpperBoundLogicalMatrix(redPartMatrix <= (RedEyesColor(1,1,1) + tolerance)) = 1;
-                redPartLowerBoundLogicalMatrix(redPartMatrix >= (RedEyesColor(1,1,1) - tolerance)) = 1;
-                greenPartUpperBoundLogicalMatrix(greenPartMatrix <= (RedEyesColor(1,1,2) + tolerance)) = 1;
-                greenPartLowerBoundLogicalMatrix(greenPartMatrix >= (RedEyesColor(1,1,2) - tolerance)) = 1;
-                bluePartUpperBoundLogicalMatrix(bluePartMatrix <= (RedEyesColor(1,1,3) + tolerance)) = 1;
-                bluePartLowerBoundLogicalMatrix(bluePartMatrix >= (RedEyesColor(1,1,3) - tolerance)) = 1;
+                redPartUpperBoundLogicalMatrix(redPartMatrix <= (clickedColor(1,1,1) + tolerance)) = 1;
+                redPartLowerBoundLogicalMatrix(redPartMatrix >= (clickedColor(1,1,1) - tolerance)) = 1;
+                greenPartUpperBoundLogicalMatrix(greenPartMatrix <= (clickedColor(1,1,2) + tolerance)) = 1;
+                greenPartLowerBoundLogicalMatrix(greenPartMatrix >= (clickedColor(1,1,2) - tolerance)) = 1;
+                bluePartUpperBoundLogicalMatrix(bluePartMatrix <= (clickedColor(1,1,3) + tolerance)) = 1;
+                bluePartLowerBoundLogicalMatrix(bluePartMatrix >= (clickedColor(1,1,3) - tolerance)) = 1;
                 
                 partLogicalMatrix = redPartUpperBoundLogicalMatrix .* redPartLowerBoundLogicalMatrix .* greenPartUpperBoundLogicalMatrix ...
                     .* greenPartLowerBoundLogicalMatrix .* bluePartUpperBoundLogicalMatrix .* bluePartLowerBoundLogicalMatrix;
@@ -184,6 +184,22 @@ function mouseDown (hObject, eventdata)
             blurred(:, :, 2) = conv2(ImageMatrix(:, :, 2), shape, 'same');
             blurred(:, :, 3) = conv2(ImageMatrix(:, :, 3), shape, 'same');
             handles.ImageShow = blurred;
+            handles.ImagePlot = image(handles.ImageShow);
+            setImageAxis(handles);
+            
+        case 8 %Brightness
+            strength = get(handles.SliderEffects, 'Value');
+            handles.ImageShow = handles.ImageShow * strength * 2;
+            handles.ImagePlot = image(handles.ImageShow);
+            setImageAxis(handles);
+            
+        case 9 %Contrast
+            strength = get(handles.SliderEffects, 'Value');
+            ImageMatrix = handles.ImageShow;
+            C = strength * 510 - 255;
+            F = (259 * (C + 255))/(255 * (259 - C));
+            ImageMatrix = F * (ImageMatrix - 0.5) + 0.5;
+            handles.ImageShow = ImageMatrix;
             handles.ImagePlot = image(handles.ImageShow);
             setImageAxis(handles);
     end
